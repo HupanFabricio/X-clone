@@ -1,5 +1,6 @@
 import { createClient } from "@/utils/supabase/server";
 import { handleSignOut } from "./login/actions";
+import PostCard from "./components/post-card";
 
 export default async function Home() {
 	const supabase = await createClient();
@@ -8,9 +9,9 @@ export default async function Home() {
 		data: { user },
 	} = await supabase.auth.getUser();
 
-	const { data: post } = await supabase.from("posts").select(`
+	const { data: posts } = await supabase.from("posts").select(`
       *,
-      user:users (id, name, user_name, avatar_url)
+      user:users (*)
     `);
 
 	return (
@@ -42,7 +43,23 @@ export default async function Home() {
 				</div>
 			)}
 
-			<pre>{JSON.stringify(post, null, 2)}</pre>
+			<div>
+				{posts?.map((post) => {
+					const {
+						id,
+						user_name: username,
+						name: userFullname,
+						avatar_url: avatarUrl,
+						content,
+					} = post;
+					return (
+						<PostCard
+							{...{ content, username, userFullname, avatarUrl }}
+							key={id}
+						/>
+					);
+				})}
+			</div>
 		</main>
 	);
 }
