@@ -11,61 +11,37 @@ import {
 } from "@nextui-org/react";
 
 export default function PostCard({
-	username,
+	content,
+	userName,
 	avatarUrl,
-	userFullname,
+	userFullName,
 }: {
-	username: string;
+	content: string;
+	userName: string;
 	avatarUrl: string;
-	userFullname: string;
+	userFullName: string;
 }) {
 	const [isFollowed, setIsFollowed] = useState(false);
 
 	return (
-		<Card className="max-w-[340px]">
+		<Card className="dark w-full">
 			<CardHeader className="justify-between">
-				<div className="flex gap-5">
-					<Avatar
-						isBordered
-						radius="full"
-						size="md"
-						src="https://nextui.org/avatars/avatar-1.png"
-					/>
-					<div className="flex flex-col gap-1 items-start justify-center">
-						<h4 className="text-small font-semibold leading-none text-default-600">
-							Zoey Lang
-						</h4>
-						<h5 className="text-small tracking-tight text-default-400">
-							@zoeylang
-						</h5>
+				<div className="flex gap-x-2">
+					<Avatar radius="full" size="md" src={avatarUrl} />
+					<div className="flex flex-col gap-y-2">
+						<div className="flex flex-row gap-x-1 h-fit">
+							<h4 className="font-bold leading-none text-default-600">
+								{userFullName}
+							</h4>
+							<h5 className="tracking-tight text-default-400 text-small leading-none">
+								@{userName}
+							</h5>
+						</div>
+						<p className="leading-none">{content}</p>
 					</div>
 				</div>
-				<Button
-					className={
-						isFollowed
-							? "bg-transparent text-foreground border-default-200"
-							: ""
-					}
-					color="primary"
-					radius="full"
-					size="sm"
-					variant={isFollowed ? "bordered" : "solid"}
-					onPress={() => setIsFollowed(!isFollowed)}>
-					{isFollowed ? "Unfollow" : "Follow"}
-				</Button>
 			</CardHeader>
-			<CardBody className="px-3 py-0 text-small text-default-400">
-				<p>
-					Frontend developer and UI/UX enthusiast. Join me on this coding
-					adventure!
-				</p>
-				<span className="pt-2">
-					#FrontendWithZoey
-					<span className="py-2" aria-label="computer" role="img">
-						💻
-					</span>
-				</span>
-			</CardBody>
+
 			<CardFooter className="gap-3">
 				<div className="flex gap-1">
 					<p className="font-semibold text-default-400 text-small">4</p>

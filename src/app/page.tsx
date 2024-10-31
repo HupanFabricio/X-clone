@@ -45,16 +45,15 @@ export default async function Home() {
 
 			<div>
 				{posts?.map((post) => {
+					const { id, user, content } = post;
 					const {
-						id,
-						user_name: username,
-						name: userFullname,
+						user_name: userName,
+						name: userFullName,
 						avatar_url: avatarUrl,
-						content,
-					} = post;
+					} = user;
 					return (
 						<PostCard
-							{...{ content, username, userFullname, avatarUrl }}
+							{...{ content, userName, userFullName, avatarUrl }}
 							key={id}
 						/>
 					);

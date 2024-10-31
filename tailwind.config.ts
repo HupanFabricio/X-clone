@@ -15,6 +15,9 @@ const config: Config = {
 				foreground: "var(--foreground)",
 			},
 		},
+		fontSize: {
+			base: "15px",
+		},
 	},
 	darkMode: "class",
 	plugins: [nextui()],
