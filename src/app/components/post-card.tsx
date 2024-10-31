@@ -44,9 +44,15 @@ export default function PostCard({
 			</CardHeader>
 
 			<CardFooter className="flex justify-between">
-				<IconMessageCircle />
-				<IconRepeat />
-				<IconHeart />
+				<button>
+					<IconMessageCircle />
+				</button>
+				<button>
+					<IconRepeat />
+				</button>
+				<button>
+					<IconHeart />
+				</button>
 
 				{/* <div className="flex gap-1">
 					<p className="font-semibold text-default-400 text-small">4</p>
