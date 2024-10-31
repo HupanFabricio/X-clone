@@ -6,9 +6,9 @@ import ComposePost from "./components/compose-post";
 export default async function Home() {
 	const supabase = await createClient();
 
-	// const {
-	// 	data: { user },
-	// } = await supabase.auth.getUser();
+	const {
+		data: { user },
+	} = await supabase.auth.getUser();
 
 	// if (!user) {
 	// 	redirect("/login");
@@ -22,7 +22,7 @@ export default async function Home() {
 	return (
 		<main className="flex min-h-screen flex-col items-center justify-between">
 			<section className="max-w-[600px] border-x border-white/20 w-full">
-				<ComposePost />
+				<ComposePost userAvatarUrl={user?.user_metadata?.avatar_url} />
 				<PostList posts={posts} />
 			</section>
 		</main>
